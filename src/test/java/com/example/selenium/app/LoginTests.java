@@ -44,7 +44,13 @@ class LoginTests {
 		assertTrue(browser.getCurrentUrl().equals("http://localhost:8080/login?error"));
 		assertTrue(browser.getPageSource().contains("Usuário e senha inválidos"));
 		assertThrows(NoSuchElementException.class, ()-> browser.findElement(By.id("nome-usuario")).getText());
+	}
 
+	@Test
+	public void naoDeveAcessarPaginaLeiloesSemLogin(){
+		browser.navigate().to("http://localhost:8080/leiloes/2");
+		assertTrue(browser.getCurrentUrl().equals("http://localhost:8080/login"));
+		assertFalse(browser.getPageSource().contains("Dados do Leilão"));
 	}
 
 	@AfterEach
