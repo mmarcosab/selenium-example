@@ -1,4 +1,4 @@
-package com.example.selenium.app.chrome;
+package com.example.selenium.app.chrome.page;
 
 
 import org.openqa.selenium.By;
@@ -25,8 +25,9 @@ public class LoginPage {
         browser.findElement(By.id("password")).sendKeys(password);
     }
 
-    public void submitForm(){
+    public LeiloesPage submitForm(){
         browser.findElement(By.id("btn-submit")).click();
+        return new LeiloesPage(browser);
     }
 
     public void quit() {

@@ -1,10 +1,11 @@
 package com.example.selenium.app.chrome;
 
+import com.example.selenium.app.chrome.page.LoginPage;
 import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 
-class LoginTests {
+class LoginTest {
 
 	private LoginPage loginPage;
 
