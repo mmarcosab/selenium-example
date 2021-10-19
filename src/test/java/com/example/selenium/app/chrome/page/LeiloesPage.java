@@ -3,6 +3,9 @@ package com.example.selenium.app.chrome.page;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
+import java.time.LocalDate;
 
 
 public class LeiloesPage {
@@ -50,8 +53,20 @@ public class LeiloesPage {
         browser.navigate().to("http://localhost:8080/leiloes/2");
     }
 
-    public void goToLeilaoForm(){
+    public CadastroLeilaoPage goToLeilaoForm(){
         browser.findElement(By.id("novo_leilao_link")).click();
+        return new CadastroLeilaoPage(browser);
     }
 
+    public boolean isCadastrado(String nome, String valorInicial, String dataAbertura) {
+        WebElement linhaDaTabela = this.browser.findElement(By.cssSelector("#tabela-leiloes tbody tr:last-child"));
+        WebElement colunaNome = linhaDaTabela.findElement(By.cssSelector("td:nth-child(1"));
+        WebElement colunaDataAbertura = linhaDaTabela.findElement(By.cssSelector("td:nth-child(2"));
+        WebElement colunaValorInicial = linhaDaTabela.findElement(By.cssSelector("td:nth-child(3"));
+
+        return colunaNome.getText().equals(nome)
+            && colunaValorInicial.getText().equals(valorInicial)
+            && colunaDataAbertura.getText().equals(dataAbertura);
+
+    }
 }

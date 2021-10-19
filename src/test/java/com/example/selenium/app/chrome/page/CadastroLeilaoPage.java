@@ -4,6 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 
+import java.time.LocalDate;
+
 
 public class CadastroLeilaoPage {
 
@@ -17,13 +19,15 @@ public class CadastroLeilaoPage {
         browser.navigate().to("http://localhost:8080/login");
     }
 
-    public void fillForm(String username, String password){
-        browser.findElement(By.id("username")).sendKeys(username);
-        browser.findElement(By.id("password")).sendKeys(password);
+    public void fillForm(String username, String valor, String dataAbertura){
+        browser.findElement(By.id("nome")).sendKeys(username);
+        browser.findElement(By.id("valorInicial")).sendKeys(valor);
+        browser.findElement(By.id("dataAbertura")).sendKeys(dataAbertura);
     }
 
-    public void submitForm(){
-        browser.findElement(By.id("btn-submit")).click();
+    public LeiloesPage submitForm(){
+        browser.findElement(By.id("button-submit")).click();
+        return new LeiloesPage(browser);
     }
 
     public void quit() {
